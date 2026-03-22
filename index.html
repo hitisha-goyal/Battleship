@@ -16,8 +16,8 @@
   --timer-ok:#00ff88;--timer-warn:#ff8800;--timer-danger:#ff3355;
   --p1:#00d4ff;--p2:#ff8800;
 }
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;overflow-x:hidden;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;animation:gridDrift 20s linear infinite;}
 @keyframes gridDrift{0%{transform:translate(0,0)}100%{transform:translate(40px,40px)}}
 body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,100,160,0.15) 0%,transparent 60%);pointer-events:none;z-index:0;}
@@ -51,7 +51,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .diff-timer{font-size:0.68rem;color:var(--green);margin-top:4px;}
 #diffSection,#timerSection{width:100%;max-width:340px;display:flex;flex-direction:column;gap:8px;}
 
-.menu-btn{width:100%;max-width:340px;padding:14px;background:transparent;border:1px solid var(--cyan);border-radius:6px;font-family:'Orbitron',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.2em;color:var(--cyan);cursor:pointer;text-transform:uppercase;transition:all 0.2s;position:relative;overflow:hidden;}
+.menu-btn{width:100%;max-width:340px;padding:14px;background:transparent;border:1px solid var(--cyan);border-radius:6px;font-family:'Orbitron',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.2em;color:var(--cyan);cursor:pointer;text-transform:uppercase;transition:all 0.2s;position:relative;overflow:hidden;touch-action:manipulation;-webkit-user-select:none;user-select:none;}
 .menu-btn::before{content:'';position:absolute;inset:0;background:var(--cyan);transform:translateX(-100%);transition:transform 0.3s;z-index:-1;}
 .menu-btn:hover::before{transform:translateX(0);}
 .menu-btn:hover{color:var(--bg);box-shadow:0 0 24px rgba(0,212,255,0.4);}
@@ -68,6 +68,27 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .name-input.p1-input:focus{border-color:var(--p1);}
 .name-input.p2-input:focus{border-color:var(--p2);}
 #p2NameField{display:none;}
+
+/* GRID CUSTOMIZATION */
+#gridSection{width:100%;max-width:340px;display:flex;flex-direction:column;gap:8px;}
+.grid-size-cards{display:flex;gap:8px;width:100%;}
+.grid-size-card{flex:1;padding:10px 7px;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer;transition:all 0.2s;text-align:center;position:relative;overflow:hidden;}
+.grid-size-card::before{content:'';position:absolute;inset:0;background:var(--cyan-glow);opacity:0;transition:opacity 0.2s;}
+.grid-size-card:hover::before,.grid-size-card.selected::before{opacity:1;}
+.grid-size-card.selected{border-color:var(--cyan);box-shadow:0 0 14px rgba(0,212,255,0.2);}
+.gsz-name{font-family:'Orbitron',sans-serif;font-size:0.62rem;font-weight:700;color:var(--cyan);margin-bottom:3px;text-transform:uppercase;}
+.gsz-grid{display:inline-grid;gap:2px;margin:5px auto;}
+.gsz-cell{background:var(--ocean2);border-radius:1px;}
+.gsz-desc{font-size:0.52rem;color:var(--text-dim);line-height:1.4;margin-top:3px;}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);}
+.toggle-label{font-family:'Orbitron',sans-serif;font-size:0.58rem;letter-spacing:0.08em;color:var(--text);text-transform:uppercase;}
+.toggle-sub{font-size:0.52rem;color:var(--text-dim);margin-top:2px;}
+.toggle-switch{position:relative;width:40px;height:22px;flex-shrink:0;}
+.toggle-switch input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:var(--border2);border-radius:11px;cursor:pointer;transition:0.3s;}
+.toggle-slider:before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:var(--text-dim);border-radius:50%;transition:0.3s;}
+input:checked+.toggle-slider{background:var(--cyan-dim);}
+input:checked+.toggle-slider:before{transform:translateX(18px);background:var(--cyan);}
 
 /* PASS SCREEN */
 #passScreen{justify-content:center;background:var(--bg);}
@@ -87,7 +108,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .player-banner.p2{border-color:var(--p2);color:var(--p2);background:rgba(255,136,0,0.06);}
 
 .ship-list{display:flex;flex-direction:column;gap:5px;width:100%;max-width:360px;}
-.ship-item{display:flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--surface);cursor:pointer;transition:all 0.2s;}
+.ship-item{display:flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid var(--border);border-radius:6px;background:var(--surface);cursor:pointer;transition:all 0.2s;touch-action:manipulation;-webkit-user-select:none;user-select:none;}
 .ship-item:hover:not(.placed){border-color:var(--cyan-dim);}
 .ship-item.selected{border-color:var(--cyan);background:var(--surface2);box-shadow:0 0 12px var(--cyan-glow);}
 .ship-item.placed{border-color:var(--green-dim);opacity:0.65;cursor:pointer;}
@@ -100,7 +121,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .ship-item-status{font-size:0.57rem;color:var(--text-dim);}
 
 .placement-controls{display:flex;gap:5px;width:100%;max-width:360px;}
-.ctrl-btn{flex:1;padding:8px 3px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-family:'Orbitron',sans-serif;font-size:0.52rem;letter-spacing:0.04em;cursor:pointer;text-transform:uppercase;transition:all 0.2s;}
+.ctrl-btn{flex:1;padding:8px 3px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-family:'Orbitron',sans-serif;font-size:0.52rem;letter-spacing:0.04em;cursor:pointer;text-transform:uppercase;transition:all 0.2s;touch-action:manipulation;-webkit-user-select:none;user-select:none;}
 .ctrl-btn:hover:not(:disabled){border-color:var(--cyan-dim);color:var(--cyan);}
 .ctrl-btn.primary{border-color:var(--cyan);color:var(--cyan);}
 .ctrl-btn.primary:hover{background:var(--cyan);color:var(--bg);}
@@ -118,7 +139,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .grid-row-labels{display:flex;flex-direction:column;gap:2px;width:18px;flex-shrink:0;}
 .row-label{flex:1;display:flex;align-items:center;justify-content:center;font-size:0.48rem;color:var(--text-dim);font-family:'Orbitron',sans-serif;min-height:0;}
 .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;flex:1;}
-.cell{aspect-ratio:1;border-radius:2px;border:1px solid var(--border);background:var(--ocean);cursor:pointer;transition:background 0.15s,border-color 0.15s;position:relative;overflow:hidden;}
+.cell{aspect-ratio:1;border-radius:2px;border:1px solid var(--border);background:var(--ocean);cursor:pointer;transition:background 0.15s,border-color 0.15s;position:relative;overflow:hidden;touch-action:manipulation;-webkit-user-select:none;user-select:none;}
 .cell::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.03) 0%,transparent 50%);}
 .cell:hover:not(.disabled):not(.no-hover){background:var(--ocean2);border-color:var(--cyan-dim);}
 .cell.ship-preview{background:rgba(30,90,122,0.7);border-color:var(--cyan-dim);}
@@ -199,6 +220,34 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+/* Mobile safe area + touch improvements */
+@supports(padding:max(0px)){
+  .screen{
+    padding-left:max(12px,env(safe-area-inset-left));
+    padding-right:max(12px,env(safe-area-inset-right));
+    padding-bottom:max(10px,env(safe-area-inset-bottom));
+  }
+  #gameScreen{
+    padding-bottom:max(10px,env(safe-area-inset-bottom));
+  }
+}
+
+/* Ensure grid cells are always finger-friendly */
+@media(max-width:400px){
+  .grid{gap:1px;}
+  .cell{min-width:0;}
+  .grid-wrap{max-width:100%;}
+  .ship-item{padding:9px 11px;}
+  .ctrl-btn{padding:10px 3px;font-size:0.5rem;}
+  .menu-btn{padding:16px;}
+  .pass-btn{padding:18px;}
+  .diff-card{padding:10px 5px;}
+}
+
+@media(min-width:401px) and (max-width:480px){
+  .grid-wrap{max-width:100%;}
+}
 </style>
 </head>
 <body>
@@ -260,6 +309,37 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
     </div>
   </div>
 
+  <div id="gridSection" style="display:flex;flex-direction:column;gap:8px;">
+    <div class="section-title">Grid Size</div>
+    <div class="grid-size-cards">
+      <div class="grid-size-card" data-size="8" onclick="selectGridSize(this,8)">
+        <div class="gsz-name">8 × 8</div>
+        <div class="gsz-grid" id="gsz8" style="grid-template-columns:repeat(8,6px);"></div>
+        <div class="gsz-desc">Fast games<br>4 ships</div>
+      </div>
+      <div class="grid-size-card selected" data-size="10" onclick="selectGridSize(this,10)">
+        <div class="gsz-name">10 × 10</div>
+        <div class="gsz-grid" id="gsz10" style="grid-template-columns:repeat(10,5px);"></div>
+        <div class="gsz-desc">Classic<br>5 ships</div>
+      </div>
+      <div class="grid-size-card" data-size="12" onclick="selectGridSize(this,12)">
+        <div class="gsz-name">12 × 12</div>
+        <div class="gsz-grid" id="gsz12" style="grid-template-columns:repeat(12,4px);"></div>
+        <div class="gsz-desc">Epic battles<br>6 ships</div>
+      </div>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Fog of War</div>
+        <div class="toggle-sub">Hide shots until turn ends</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="fogToggle">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
   <div class="name-section" id="nameSection">
     <div class="section-title">Player Names</div>
     <div class="name-fields">
@@ -290,7 +370,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 <!-- PLACEMENT -->
 <div class="screen hidden" id="placementScreen">
   <div class="screen-title" id="placementTitle">Deploy Your Fleet</div>
-  <div class="screen-sub">Select ship → tap grid · <span style="color:var(--cyan)">Tap placed ship</span> = lift &amp; move · <span style="color:var(--green)">Right-click / long-press</span> = rotate</div>
+  <div class="screen-sub">Tap ship list → tap grid to place · <span style="color:var(--cyan)">Tap placed</span> = rotate · <span style="color:var(--orange)">Double-tap / long-press</span> = remove</div>
 
   <div class="player-banner p1" id="placementBanner">⚓ COMMANDER — DEPLOYING FLEET</div>
 
@@ -384,9 +464,22 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 </div>
 
 <script>
-const COLS='ABCDEFGHIJ';
-const SHIPS_DEF=[{name:'Carrier',size:5},{name:'Battleship',size:4},{name:'Cruiser',size:3},{name:'Submarine',size:3},{name:'Destroyer',size:2}];
-const TOTAL_HITS=17;
+const COLS_ALL='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+// Grid size configs: ships change per size
+const GRID_CONFIGS={
+  8:{cols:'ABCDEFGH', ships:[{name:'Battleship',size:4},{name:'Cruiser',size:3},{name:'Submarine',size:3},{name:'Destroyer',size:2}]},
+  10:{cols:'ABCDEFGHIJ', ships:[{name:'Carrier',size:5},{name:'Battleship',size:4},{name:'Cruiser',size:3},{name:'Submarine',size:3},{name:'Destroyer',size:2}]},
+  12:{cols:'ABCDEFGHIJKL', ships:[{name:'Carrier',size:5},{name:'Battleship',size:4},{name:'Destroyer II',size:4},{name:'Cruiser',size:3},{name:'Submarine',size:3},{name:'Destroyer',size:2}]}
+};
+
+// Dynamic — set when game starts
+let GRID_SIZE=10;
+let COLS='ABCDEFGHIJ';
+let SHIPS_DEF=[{name:'Carrier',size:5},{name:'Battleship',size:4},{name:'Cruiser',size:3},{name:'Submarine',size:3},{name:'Destroyer',size:2}];
+let TOTAL_HITS=17;
+let fogOfWar=false;
+
 const DIFF_CONFIG={easy:{label:'Cadet',time:30,ai:'random'},medium:{label:'Captain',time:20,ai:'hunt'},hard:{label:'Admiral',time:15,ai:'prob'}};
 
 // ---- STATE ----
@@ -403,10 +496,35 @@ let currentTurn=1, playerTurn=true;
 let p1Shots=0,p1Hits=0,p1Sunk=0,p2Shots=0,p2Hits=0,p2Sunk=0,timeouts=0;
 let timerVal=30, timerInterval=null;
 let aiHuntQueue=[], aiHitChain=[], aiLastHit=null;
+let fogPending=null; // for fog of war: {r,c,result} shown after turn
 
-function initBoards(){p1Board=Array.from({length:10},()=>Array(10).fill(null));p2Board=Array.from({length:10},()=>Array(10).fill(null));}
+function initBoards(){
+  p1Board=Array.from({length:GRID_SIZE},()=>Array(GRID_SIZE).fill(null));
+  p2Board=Array.from({length:GRID_SIZE},()=>Array(GRID_SIZE).fill(null));
+}
 
 // ---- MENU ----
+function buildMiniGridPreviews(){
+  [8,10,12].forEach(size=>{
+    const el=document.getElementById('gsz'+size);
+    if(!el)return;
+    el.innerHTML='';
+    for(let i=0;i<size*size;i++){
+      const c=document.createElement('div');
+      c.className='gsz-cell';
+      c.style.width=(size===8?'6px':size===10?'5px':'4px');
+      c.style.height=c.style.width;
+      el.appendChild(c);
+    }
+  });
+}
+
+function selectGridSize(el,size){
+  GRID_SIZE=size;
+  document.querySelectorAll('.grid-size-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
 function selectMode(el,mode){
   gameMode=mode;
   document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('selected'));
@@ -424,7 +542,14 @@ function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classL
 function gotoMenu(){closeModal();stopTimer();showScreen('menuScreen');}
 
 function gotoPlacement(){
-  p1Name=(document.getElementById('p1NameInput').value.trim()||( gameMode==='ai'?'Commander':'Sailor'));
+  // Apply grid config
+  const cfg=GRID_CONFIGS[GRID_SIZE];
+  COLS=cfg.cols;
+  SHIPS_DEF=cfg.ships;
+  TOTAL_HITS=SHIPS_DEF.reduce((a,s)=>a+s.size,0);
+  fogOfWar=document.getElementById('fogToggle').checked;
+
+  p1Name=(document.getElementById('p1NameInput').value.trim()||(gameMode==='ai'?'Commander':'Sailor'));
   p2Name=(gameMode==='2p'?(document.getElementById('p2NameInput').value.trim()||'Admiral'):'AI');
   initBoards(); currentPlacingPlayer=1;
   resetPlacementState(); updatePlacementBanner();
@@ -486,13 +611,45 @@ function renderShipList(){
     const sel=selectedShipIdx===i;
     const div=document.createElement('div');
     div.className='ship-item'+(placed?' placed':'')+(sel?' selected':'');
-    const statusTxt=placed?'✦ tap to move':ship.size+' cells';
+    const statusTxt=placed?'tap=rotate · dbl=remove':ship.size+' cells';
     div.innerHTML=`<div class="ship-item-blocks">${Array(ship.size).fill('<div class="ship-block"></div>').join('')}</div><div class="ship-item-name">${ship.name}</div><div class="ship-item-status">${statusTxt}</div>`;
     if(!placed){
       div.addEventListener('click',()=>selectShip(i));
+      div.addEventListener('touchend',(e)=>{e.preventDefault();selectShip(i);},{passive:false});
     } else {
-      // Click placed ship in list = lift it off the board
-      div.addEventListener('click',()=>liftShip(i));
+      let lastWasTouch=false;
+      let tapCount=0, tapTimer=null;
+
+      // touch: double-tap = lift, single-tap = rotate
+      div.addEventListener('touchstart',()=>{lastWasTouch=true;},{passive:true});
+      div.addEventListener('touchend',(e)=>{
+        e.preventDefault();
+        tapCount++;
+        if(tapCount===1){
+          tapTimer=setTimeout(()=>{
+            tapCount=0;
+            const ps=placedShips.find(p=>p.shipIdx===i);
+            if(ps) rotatePlacedShipAt(ps.cells[0].r,ps.cells[0].c);
+          },280);
+        } else {
+          clearTimeout(tapTimer);tapCount=0;liftShip(i);
+        }
+      },{passive:false});
+
+      // desktop: double-click = lift, single-click = rotate
+      div.addEventListener('click',()=>{
+        if(lastWasTouch){lastWasTouch=false;return;}
+        tapCount++;
+        if(tapCount===1){
+          tapTimer=setTimeout(()=>{
+            tapCount=0;
+            const ps=placedShips.find(p=>p.shipIdx===i);
+            if(ps) rotatePlacedShipAt(ps.cells[0].r,ps.cells[0].c);
+          },280);
+        } else {
+          clearTimeout(tapTimer);tapCount=0;liftShip(i);
+        }
+      });
     }
     list.appendChild(div);
   });
@@ -501,7 +658,6 @@ function selectShip(i){selectedShipIdx=i;renderShipList();renderPlacementGrid();
 function rotateSelected(){shipOrientation=shipOrientation==='h'?'v':'h';renderPlacementGrid();showToast(`Orient: ${shipOrientation==='h'?'→ Horizontal':'↓ Vertical'}`,'rotate-toast');}
 
 function liftShip(idx){
-  // Remove ship from board, select it for re-placement
   placedShips=placedShips.filter(p=>p.shipIdx!==idx);
   const remaining=shipCells.filter(s=>s.shipIdx!==idx);
   shipCells.length=0;remaining.forEach(s=>shipCells.push(s));
@@ -514,36 +670,113 @@ function liftShip(idx){
 function buildGridLabels(colId,rowId){
   const ce=document.getElementById(colId),re=document.getElementById(rowId);
   ce.innerHTML='';re.innerHTML='';
-  for(let c=0;c<10;c++){const d=document.createElement('div');d.className='grid-label';d.textContent=COLS[c];ce.appendChild(d);}
-  for(let r=0;r<10;r++){const d=document.createElement('div');d.className='row-label';d.textContent=r+1;re.appendChild(d);}
+  for(let c=0;c<GRID_SIZE;c++){const d=document.createElement('div');d.className='grid-label';d.textContent=COLS[c];ce.appendChild(d);}
+  for(let r=0;r<GRID_SIZE;r++){const d=document.createElement('div');d.className='row-label';d.textContent=r+1;re.appendChild(d);}
 }
 
 function renderPlacementGrid(){
   buildGridLabels('placementColLabels','placementRowLabels');
-  const grid=document.getElementById('placementGrid');grid.innerHTML='';
-  for(let r=0;r<10;r++){
-    for(let c=0;c<10;c++){
+  const grid=document.getElementById('placementGrid');
+  grid.innerHTML='';
+  grid.style.gridTemplateColumns=`repeat(${GRID_SIZE},1fr)`;
+  for(let r=0;r<GRID_SIZE;r++){
+    for(let c=0;c<GRID_SIZE;c++){
       const cell=document.createElement('div');
       cell.className='cell';cell.dataset.r=r;cell.dataset.c=c;
       const sc=shipCells.find(s=>s.r===r&&s.c===c);
       if(sc){
         cell.classList.add('has-ship');
-        // Left-click placed ship = lift to re-place; right-click = rotate in place
-        cell.addEventListener('click',()=>liftShip(sc.shipIdx));
-        cell.addEventListener('contextmenu',(e)=>{e.preventDefault();rotatePlacedShipAt(sc.r,sc.c);});
-        // Long-press on mobile = rotate
-        let pressTimer=null;
-        cell.addEventListener('touchstart',(e)=>{e.preventDefault();pressTimer=setTimeout(()=>{rotatePlacedShipAt(sc.r,sc.c);pressTimer=null;},500);},{passive:false});
-        cell.addEventListener('touchend',()=>{if(pressTimer){clearTimeout(pressTimer);liftShip(sc.shipIdx);}});
+        attachShipCellHandlers(cell, sc.shipIdx, sc.r, sc.c);
       } else {
         cell.addEventListener('mouseenter',()=>previewShip(r,c));
         cell.addEventListener('mouseleave',()=>clearPreview());
-        cell.addEventListener('click',()=>placeShipAt(r,c));
-        cell.addEventListener('touchstart',(e)=>{e.preventDefault();placeShipAt(r,c);},{passive:false});
+        attachEmptyCellHandlers(cell, r, c);
       }
       grid.appendChild(cell);
     }
   }
+}
+
+function attachShipCellHandlers(cell, shipIdx, r, c){
+  // Track whether the last interaction was touch so we skip the ghost click
+  let lastWasTouch=false;
+  let pressTimer=null;
+  let didLong=false;
+  let tapTimer=null;
+  let tapCount=0;
+
+  // ── TOUCH (mobile) ──────────────────────────────────────────
+  cell.addEventListener('touchstart',(e)=>{
+    e.preventDefault();          // suppress ghost click
+    lastWasTouch=true;
+    didLong=false;
+    clearTimeout(pressTimer);
+    pressTimer=setTimeout(()=>{
+      didLong=true;
+      liftShip(shipIdx);
+    },550);
+  },{passive:false});
+
+  cell.addEventListener('touchmove',()=>{
+    clearTimeout(pressTimer); pressTimer=null;
+  },{passive:true});
+
+  cell.addEventListener('touchend',(e)=>{
+    e.preventDefault();
+    clearTimeout(pressTimer); pressTimer=null;
+    if(didLong) return;           // long-press already handled
+    // double-tap = lift
+    tapCount++;
+    if(tapCount===1){
+      tapTimer=setTimeout(()=>{
+        tapCount=0;
+        rotatePlacedShipAt(r,c); // single tap → rotate
+      },280);
+    } else {
+      clearTimeout(tapTimer); tapCount=0;
+      liftShip(shipIdx);          // double tap → lift
+    }
+  },{passive:false});
+
+  // ── MOUSE (desktop) ─────────────────────────────────────────
+  cell.addEventListener('click',()=>{
+    if(lastWasTouch){lastWasTouch=false;return;} // skip ghost click after touch
+    tapCount++;
+    if(tapCount===1){
+      tapTimer=setTimeout(()=>{
+        tapCount=0;
+        rotatePlacedShipAt(r,c); // single click → rotate
+      },280);
+    } else {
+      clearTimeout(tapTimer); tapCount=0;
+      liftShip(shipIdx);          // double click → lift
+    }
+  });
+
+  cell.addEventListener('contextmenu',(e)=>{
+    e.preventDefault();
+    liftShip(shipIdx);            // right-click → lift (desktop bonus)
+  });
+}
+
+function attachEmptyCellHandlers(cell, r, c){
+  let lastWasTouch=false;
+  let touchMoved=false;
+
+  cell.addEventListener('touchstart',()=>{
+    lastWasTouch=true; touchMoved=false;
+  },{passive:true});
+  cell.addEventListener('touchmove',()=>{touchMoved=true;},{passive:true});
+  cell.addEventListener('touchend',(e)=>{
+    if(!touchMoved){e.preventDefault();placeShipAt(r,c);}
+  },{passive:false});
+
+  cell.addEventListener('mouseenter',()=>previewShip(r,c));
+  cell.addEventListener('mouseleave',()=>clearPreview());
+  cell.addEventListener('click',()=>{
+    if(lastWasTouch){lastWasTouch=false;return;}
+    placeShipAt(r,c);
+  });
 }
 
 function rotatePlacedShipAt(r,c){
@@ -560,7 +793,7 @@ function rotatePlacedShipAt(r,c){
   const startC=Math.min(...cells.map(x=>x.c));
   const newCells=getShipCells(startR,startC,size,newOrient);
   const others=shipCells.filter(s=>s.shipIdx!==idx);
-  const valid=newCells.every(({r:nr,c:nc})=>nr>=0&&nr<10&&nc>=0&&nc<10&&!others.find(s=>s.r===nr&&s.c===nc));
+  const valid=newCells.every(({r:nr,c:nc})=>nr>=0&&nr<GRID_SIZE&&nc>=0&&nc<GRID_SIZE&&!others.find(s=>s.r===nr&&s.c===nc));
   if(!valid){showToast('Cannot rotate here — blocked!','timeout-toast');return;}
   // Apply rotation
   placedShips=placedShips.filter(p=>p.shipIdx!==idx);
@@ -577,7 +810,7 @@ function previewShip(r,c){
   if(selectedShipIdx===null||placedShips.find(p=>p.shipIdx===selectedShipIdx)) return;
   const size=SHIPS_DEF[selectedShipIdx].size;
   const cells=getShipCells(r,c,size,shipOrientation);
-  const valid=cells.every(({r:cr,c:cc})=>cr>=0&&cr<10&&cc>=0&&cc<10&&!shipCells.find(s=>s.r===cr&&s.c===cc));
+  const valid=cells.every(({r:cr,c:cc})=>cr>=0&&cr<GRID_SIZE&&cc>=0&&cc<GRID_SIZE&&!shipCells.find(s=>s.r===cr&&s.c===cc));
   cells.forEach(({r:cr,c:cc})=>{
     const el=document.querySelector(`#placementGrid [data-r="${cr}"][data-c="${cc}"]`);
     if(el&&!shipCells.find(s=>s.r===cr&&s.c===cc)){el.classList.add('ship-preview');if(!valid)el.classList.add('invalid');}
@@ -594,7 +827,7 @@ function placeShipAt(r,c){
   if(selectedShipIdx===null||placedShips.find(p=>p.shipIdx===selectedShipIdx))return;
   const size=SHIPS_DEF[selectedShipIdx].size;
   const cells=getShipCells(r,c,size,shipOrientation);
-  const valid=cells.every(({r:cr,c:cc})=>cr>=0&&cr<10&&cc>=0&&cc<10&&!shipCells.find(s=>s.r===cr&&s.c===cc));
+  const valid=cells.every(({r:cr,c:cc})=>cr>=0&&cr<GRID_SIZE&&cc>=0&&cc<GRID_SIZE&&!shipCells.find(s=>s.r===cr&&s.c===cc));
   if(!valid){showToast('Invalid position!');return;}
   placedShips.push({shipIdx:selectedShipIdx,cells});
   cells.forEach(({r:cr,c:cc})=>shipCells.push({r:cr,c:cc,shipIdx:selectedShipIdx}));
@@ -610,9 +843,9 @@ function randomPlacement(){
   SHIPS_DEF.forEach((ship,i)=>{
     let ok=false;
     while(!ok){
-      const orient=Math.random()<0.5?'h':'v',r=Math.floor(Math.random()*10),c=Math.floor(Math.random()*10);
+      const orient=Math.random()<0.5?'h':'v',r=Math.floor(Math.random()*GRID_SIZE),c=Math.floor(Math.random()*GRID_SIZE);
       const cells=getShipCells(r,c,ship.size,orient);
-      const valid=cells.every(({r:cr,c:cc})=>cr>=0&&cr<10&&cc>=0&&cc<10&&!shipCells.find(s=>s.r===cr&&s.c===cc));
+      const valid=cells.every(({r:cr,c:cc})=>cr>=0&&cr<GRID_SIZE&&cc>=0&&cc<GRID_SIZE&&!shipCells.find(s=>s.r===cr&&s.c===cc));
       if(valid){placedShips.push({shipIdx:i,cells});cells.forEach(({r:cr,c:cc})=>shipCells.push({r:cr,c:cc,shipIdx:i}));ok=true;}
     }
   });
@@ -649,9 +882,9 @@ function placeAIShips(){
   SHIPS_DEF.forEach((ship,i)=>{
     let ok=false;
     while(!ok){
-      const orient=Math.random()<0.5?'h':'v',r=Math.floor(Math.random()*10),c=Math.floor(Math.random()*10);
+      const orient=Math.random()<0.5?'h':'v',r=Math.floor(Math.random()*GRID_SIZE),c=Math.floor(Math.random()*GRID_SIZE);
       const cells=getShipCells(r,c,ship.size,orient);
-      const valid=cells.every(({r:cr,c:cc})=>cr>=0&&cr<10&&cc>=0&&cc<10&&!p2ShipCells.find(s=>s.r===cr&&s.c===cc));
+      const valid=cells.every(({r:cr,c:cc})=>cr>=0&&cr<GRID_SIZE&&cc>=0&&cc<GRID_SIZE&&!p2ShipCells.find(s=>s.r===cr&&s.c===cc));
       if(valid){
         enemyShips.push({shipIdx:i,cells,hits:0});
         cells.forEach(({r:cr,c:cc})=>{p2ShipCells.push({r:cr,c:cc,shipIdx:i});p2Board[cr][cc]='ship';});
@@ -693,20 +926,38 @@ function renderGameBoards(){
 
 function renderEnemyGrid(){
   const grid=document.getElementById('enemyGrid');grid.innerHTML='';
+  grid.style.gridTemplateColumns=`repeat(${GRID_SIZE},1fr)`;
   const board=gameMode==='ai'?p2Board:(currentTurn===1?p2Board:p1Board);
   const canFire=gameMode==='ai'?playerTurn:true;
-  for(let r=0;r<10;r++){
-    for(let c=0;c<10;c++){
+  for(let r=0;r<GRID_SIZE;r++){
+    for(let c=0;c<GRID_SIZE;c++){
       const cell=document.createElement('div');
       cell.className='cell';
       const state=board[r][c];
-      if(state==='hit') cell.classList.add('hit');
-      else if(state==='miss') cell.classList.add('miss');
-      else if(state==='sunk') cell.classList.add('sunk');
+      // Fog of war: hide fog-pending shot until opponent's turn
+      const isFogPending=fogOfWar&&fogPending&&fogPending.r===r&&fogPending.c===c;
+      if(state==='hit'&&!isFogPending) cell.classList.add('hit');
+      else if(state==='miss'&&!isFogPending) cell.classList.add('miss');
+      else if(state==='sunk'&&!isFogPending) cell.classList.add('sunk');
       else if(!canFire) cell.classList.add('disabled');
       if((state===null||state===undefined)&&canFire){
-        cell.addEventListener('click',()=>playerShoot(r,c));
-        cell.addEventListener('touchstart',(e)=>{e.preventDefault();playerShoot(r,c);},{passive:false});
+        let lastWasTouch=false;
+        let touchMoved=false;
+        cell.addEventListener('touchstart',()=>{
+          lastWasTouch=true;touchMoved=false;
+          cell.style.opacity='0.6';
+        },{passive:true});
+        cell.addEventListener('touchmove',()=>{
+          touchMoved=true;cell.style.opacity='';
+        },{passive:true});
+        cell.addEventListener('touchend',(e)=>{
+          cell.style.opacity='';
+          if(!touchMoved){e.preventDefault();playerShoot(r,c);}
+        },{passive:false});
+        cell.addEventListener('click',()=>{
+          if(lastWasTouch){lastWasTouch=false;return;}
+          playerShoot(r,c);
+        });
       }
       grid.appendChild(cell);
     }
@@ -715,9 +966,10 @@ function renderEnemyGrid(){
 
 function renderPlayerGrid(){
   const grid=document.getElementById('playerGrid');grid.innerHTML='';
+  grid.style.gridTemplateColumns=`repeat(${GRID_SIZE},1fr)`;
   const board=gameMode==='ai'?p1Board:(currentTurn===1?p1Board:p2Board);
-  for(let r=0;r<10;r++){
-    for(let c=0;c<10;c++){
+  for(let r=0;r<GRID_SIZE;r++){
+    for(let c=0;c<GRID_SIZE;c++){
       const cell=document.createElement('div');cell.className='cell disabled';
       const state=board[r][c];
       if(state==='ship') cell.classList.add('has-ship');
@@ -778,16 +1030,32 @@ function doShoot_AI(r,c){
   p1Shots++;
   const sc=p2ShipCells.find(s=>s.r===r&&s.c===c);
   if(sc){
-    p1Hits++;p2Board[r][c]='hit';showExplosion(r,c,'enemy');
+    p1Hits++;p2Board[r][c]='hit';
+    if(!fogOfWar) showExplosion(r,c,'enemy');
     const ship=enemyShips[sc.shipIdx];ship.hits++;
     if(ship.hits===SHIPS_DEF[sc.shipIdx].size){
       p1Sunk++;ship.cells.forEach(({r:sr,c:sc2})=>p2Board[sr][sc2]='sunk');
       addLog(`» 💥 ${p1Name} SUNK enemy ${SHIPS_DEF[sc.shipIdx].name}!`,'sunk-log');
       showToast(`💥 ${SHIPS_DEF[sc.shipIdx].name} SUNK!`,'sunk-toast');
-    } else addLog(`» 🔥 ${p1Name} HIT at ${COLS[c]}${r+1}!`,'hit-log');
-    if(p1Sunk===SHIPS_DEF.length){renderEnemyGrid();updateStatsUI();updateHitCounts();setTimeout(()=>endGame(1),600);return;}
-  } else {p2Board[r][c]='miss';addLog(`» ${p1Name} missed at ${COLS[c]}${r+1}.`,'miss-log');}
-  updateStatsUI();updateHitCounts();renderEnemyGrid();
+    } else {
+      if(fogOfWar) addLog(`» 🔥 Shot fired at ${COLS[c]}${r+1}… result hidden!`,'hit-log');
+      else addLog(`» 🔥 ${p1Name} HIT at ${COLS[c]}${r+1}!`,'hit-log');
+    }
+    if(p1Sunk===SHIPS_DEF.length){fogPending=null;renderEnemyGrid();updateStatsUI();updateHitCounts();setTimeout(()=>endGame(1),600);return;}
+  } else {
+    p2Board[r][c]='miss';
+    if(fogOfWar) addLog(`» Shot fired at ${COLS[c]}${r+1}… result hidden!`,'miss-log');
+    else addLog(`» ${p1Name} missed at ${COLS[c]}${r+1}.`,'miss-log');
+  }
+  if(fogOfWar){
+    fogPending={r,c,result:p2Board[r][c]};
+    updateStatsUI();updateHitCounts();
+    renderEnemyGrid(); // renders fog-hidden
+    showToast('🌫 Shot fired! Result revealed after AI moves.','');
+  } else {
+    fogPending=null;
+    updateStatsUI();updateHitCounts();renderEnemyGrid();
+  }
   playerTurn=false;updateGameHeader();
   setTimeout(aiTurn,900+Math.random()*600);
 }
@@ -802,7 +1070,8 @@ function doShoot_2P(r,c){
   const sc=defShipCells.find(s=>s.r===r&&s.c===c);
   if(sc){
     if(currentTurn===1) p1Hits++; else p2Hits++;
-    atkBoard[r][c]='hit';showExplosion(r,c,'enemy');
+    atkBoard[r][c]='hit';
+    if(!fogOfWar) showExplosion(r,c,'enemy');
     const ps=defPlacedShips[sc.shipIdx];
     const hitCount=ps.cells.filter(({r:sr,c:sc2})=>atkBoard[sr][sc2]==='hit'||atkBoard[sr][sc2]==='sunk').length;
     if(hitCount===SHIPS_DEF[sc.shipIdx].size){
@@ -810,12 +1079,26 @@ function doShoot_2P(r,c){
       ps.cells.forEach(({r:sr,c:sc2})=>atkBoard[sr][sc2]='sunk');
       addLog(`» 💥 ${atkName} SUNK ${defName}'s ${SHIPS_DEF[sc.shipIdx].name}!`,'sunk-log');
       showToast(`💥 ${SHIPS_DEF[sc.shipIdx].name} SUNK!`,'sunk-toast');
-    } else addLog(`» 🔥 ${atkName} HIT ${defName} at ${COLS[c]}${r+1}!`,'hit-log');
+    } else {
+      if(fogOfWar) addLog(`» 🌫 ${atkName} fired at ${COLS[c]}${r+1}… revealed next turn!`,'miss-log');
+      else addLog(`» 🔥 ${atkName} HIT ${defName} at ${COLS[c]}${r+1}!`,'hit-log');
+    }
     const sunk=currentTurn===1?p1Sunk:p2Sunk;
-    if(sunk===SHIPS_DEF.length){renderEnemyGrid();updateStatsUI();updateHitCounts();setTimeout(()=>endGame(currentTurn),600);return;}
-  } else {atkBoard[r][c]='miss';addLog(`» ${atkName} missed ${COLS[c]}${r+1}.`,'miss-log');}
-  updateStatsUI();updateHitCounts();renderEnemyGrid();
-  setTimeout(()=>switch2pTurn(false),400);
+    if(sunk===SHIPS_DEF.length){fogPending=null;renderEnemyGrid();updateStatsUI();updateHitCounts();setTimeout(()=>endGame(currentTurn),600);return;}
+  } else {
+    atkBoard[r][c]='miss';
+    if(fogOfWar) addLog(`» 🌫 ${atkName} fired at ${COLS[c]}${r+1}… revealed next turn!`,'miss-log');
+    else addLog(`» ${atkName} missed ${COLS[c]}${r+1}.`,'miss-log');
+  }
+  if(fogOfWar){
+    fogPending={r,c,result:atkBoard[r][c]};
+    updateStatsUI();updateHitCounts();renderEnemyGrid();
+    showToast('🌫 Shot hidden until pass!','');
+  } else {
+    fogPending=null;
+    updateStatsUI();updateHitCounts();renderEnemyGrid();
+  }
+  setTimeout(()=>switch2pTurn(false),fogOfWar?1200:400);
 }
 
 function switch2pTurn(timeout){
@@ -829,7 +1112,15 @@ function switch2pTurn(timeout){
   body.innerHTML=`${timeout?'⏰ Turn timed out!<br>':''}<strong>Hand the device to ${nextName}.</strong><br>Don't peek at the enemy board!`;
   btn.textContent=`${nextName} Ready →`;
   btn.onclick=()=>{
-    currentTurn=next;updateGameHeader();renderGameBoards();
+    currentTurn=next;
+    // Reveal fog before showing game screen
+    if(fogOfWar&&fogPending){
+      const {r:fr,c:fc,result}=fogPending;
+      fogPending=null;
+      if(result==='hit') setTimeout(()=>showExplosion(fr,fc,'enemy'),300);
+      addLog(`» 🌫 Fog clears! Last shot at ${COLS[fc]}${fr+1} was a ${result==='hit'?'💥 HIT':'miss'}!`,result==='hit'?'hit-log':'miss-log');
+    }
+    updateGameHeader();renderGameBoards();
     showScreen('gameScreen');updateStatsUI();
     addLog(`» ${nextName} fires!`,next===2?'p2-log':'');
     if(getTimerMax()>0) startTimer();
@@ -861,23 +1152,31 @@ function aiTurn(){
     if(p2Sunk===SHIPS_DEF.length){renderPlayerGrid();setTimeout(()=>endGame(0),600);return;}
   } else {p1Board[r][c]='miss';addLog(`» AI missed at ${COLS[c]}${r+1}.`,'miss-log');}
   renderPlayerGrid();updateHitCounts();
+  // Reveal fog-pending shot now that AI has moved
+  if(fogOfWar&&fogPending){
+    const {r:fr,c:fc,result}=fogPending;
+    fogPending=null;
+    if(result==='hit') showExplosion(fr,fc,'enemy');
+    addLog(`» 🌫 Fog clears! Your shot at ${COLS[fc]}${fr+1} was a ${result==='hit'?'💥 HIT':'miss'}!`, result==='hit'?'hit-log':'miss-log');
+    renderEnemyGrid();
+  }
   playerTurn=true;updateGameHeader();startTimer();renderEnemyGrid();
 }
 
-function getRandomUnshot(board){const o=[];for(let r=0;r<10;r++)for(let c=0;c<10;c++)if(!board[r][c]||board[r][c]==='ship')o.push([r,c]);return o[Math.floor(Math.random()*o.length)];}
-function addNeighborsToQueue(r,c){[[r-1,c],[r+1,c],[r,c-1],[r,c+1]].forEach(([nr,nc])=>{if(nr>=0&&nr<10&&nc>=0&&nc<10){const s=p1Board[nr][nc];if(!s||s==='ship')if(!aiHuntQueue.find(([qr,qc])=>qr===nr&&qc===nc))aiHuntQueue.push([nr,nc]);}});}
+function getRandomUnshot(board){const o=[];for(let r=0;r<GRID_SIZE;r++)for(let c=0;c<GRID_SIZE;c++)if(!board[r][c]||board[r][c]==='ship')o.push([r,c]);return o[Math.floor(Math.random()*o.length)];}
+function addNeighborsToQueue(r,c){[[r-1,c],[r+1,c],[r,c-1],[r,c+1]].forEach(([nr,nc])=>{if(nr>=0&&nr<GRID_SIZE&&nc>=0&&nc<GRID_SIZE){const s=p1Board[nr][nc];if(!s||s==='ship')if(!aiHuntQueue.find(([qr,qc])=>qr===nr&&qc===nc))aiHuntQueue.push([nr,nc]);}});}
 function huntAI(){while(aiHuntQueue.length>0){const[r,c]=aiHuntQueue.shift();const s=p1Board[r][c];if(!s||s==='ship')return[r,c];}return getRandomUnshot(p1Board);}
 function probAI(){
   if(aiHuntQueue.length>0)return huntAI();
-  const pm=Array.from({length:10},()=>Array(10).fill(0));
+  const pm=Array.from({length:GRID_SIZE},()=>Array(GRID_SIZE).fill(0));
   SHIPS_DEF.forEach((ship,si)=>{
     const ms=p1PlacedShips[si];
     if(!ms||!ms.cells.some(({r,c})=>p1Board[r][c]==='ship'||p1Board[r][c]==='hit'))return;
-    for(let r=0;r<10;r++)for(let c=0;c<=10-ship.size;c++){const cells=getShipCells(r,c,ship.size,'h');if(cells.every(({r:cr,c:cc})=>{const s=p1Board[cr][cc];return !s||s==='ship'||s==='hit';}))cells.forEach(({r:cr,c:cc})=>pm[cr][cc]++);}
-    for(let r=0;r<=10-ship.size;r++)for(let c=0;c<10;c++){const cells=getShipCells(r,c,ship.size,'v');if(cells.every(({r:cr,c:cc})=>{const s=p1Board[cr][cc];return !s||s==='ship'||s==='hit';}))cells.forEach(({r:cr,c:cc})=>pm[cr][cc]++);}
+    for(let r=0;r<GRID_SIZE;r++)for(let c=0;c<=GRID_SIZE-ship.size;c++){const cells=getShipCells(r,c,ship.size,'h');if(cells.every(({r:cr,c:cc})=>{const s=p1Board[cr][cc];return !s||s==='ship'||s==='hit';}))cells.forEach(({r:cr,c:cc})=>pm[cr][cc]++);}
+    for(let r=0;r<=GRID_SIZE-ship.size;r++)for(let c=0;c<GRID_SIZE;c++){const cells=getShipCells(r,c,ship.size,'v');if(cells.every(({r:cr,c:cc})=>{const s=p1Board[cr][cc];return !s||s==='ship'||s==='hit';}))cells.forEach(({r:cr,c:cc})=>pm[cr][cc]++);}
   });
   let best=-1,br=0,bc=0;
-  for(let r=0;r<10;r++)for(let c=0;c<10;c++){const s=p1Board[r][c];if(s&&s!=='ship')continue;if(pm[r][c]>best){best=pm[r][c];br=r;bc=c;}}
+  for(let r=0;r<GRID_SIZE;r++)for(let c=0;c<GRID_SIZE;c++){const s=p1Board[r][c];if(s&&s!=='ship')continue;if(pm[r][c]>best){best=pm[r][c];br=r;bc=c;}}
   return[br,bc];
 }
 
@@ -901,7 +1200,7 @@ function updateStatsUI(){
 
 function updateHitCounts(){
   let eh=0,ph=0;
-  for(let r=0;r<10;r++)for(let c=0;c<10;c++){
+  for(let r=0;r<GRID_SIZE;r++)for(let c=0;c<GRID_SIZE;c++){
     if(p2Board[r][c]==='hit'||p2Board[r][c]==='sunk')eh++;
     if(p1Board[r][c]==='hit'||p1Board[r][c]==='sunk')ph++;
   }
@@ -924,16 +1223,17 @@ function showToast(msg,cls=''){
 
 // ---- END GAME ----
 function endGame(winner){
-  stopTimer();
+  stopTimer();fogPending=null;
   const icon=document.getElementById('modalIcon'),titleEl=document.getElementById('modalTitle'),body=document.getElementById('modalBody');
+  const gridInfo=`${GRID_SIZE}×${GRID_SIZE}${fogOfWar?' · Fog on':''}`;
   if(gameMode==='ai'){
     const won=winner===1;
     icon.textContent=won?'🏆':'💀';
     titleEl.textContent=won?`${p1Name} WINS`:'DEFEATED';
     titleEl.className='modal-title '+(won?'win':'lose');
     body.innerHTML=won
-      ?`${p1Name} sank all enemy ships!<br>Difficulty: <strong>${DIFF_CONFIG[difficulty].label}</strong>`
-      :`The AI destroyed ${p1Name}'s fleet.<br>Difficulty: <strong>${DIFF_CONFIG[difficulty].label}</strong>`;
+      ?`${p1Name} sank all enemy ships!<br>Difficulty: <strong>${DIFF_CONFIG[difficulty].label}</strong> · Grid: <strong>${gridInfo}</strong>`
+      :`The AI destroyed ${p1Name}'s fleet.<br>Difficulty: <strong>${DIFF_CONFIG[difficulty].label}</strong> · Grid: <strong>${gridInfo}</strong>`;
     const acc=p1Shots>0?Math.round(p1Hits/p1Shots*100):0;
     document.getElementById('modalShots').textContent=p1Shots;
     document.getElementById('modalAcc').textContent=acc+'%';
@@ -946,7 +1246,7 @@ function endGame(winner){
     titleEl.className=`modal-title ${winner===1?'win':'p2win'}`;
     const ws=winner===1?p1Shots:p2Shots,wh=winner===1?p1Hits:p2Hits;
     const acc=ws>0?Math.round(wh/ws*100):0;
-    body.innerHTML=`${winName} destroyed ${loseName}'s fleet!<br>${p1Name}: ${p1Shots} shots · ${p2Name}: ${p2Shots} shots`;
+    body.innerHTML=`${winName} destroyed ${loseName}'s fleet!<br>${p1Name}: ${p1Shots} shots · ${p2Name}: ${p2Shots} shots<br>Grid: <strong>${gridInfo}</strong>`;
     document.getElementById('modalShots').textContent=`${p1Shots}/${p2Shots}`;
     document.getElementById('modalAcc').textContent=acc+'%';
     document.getElementById('modalTO').textContent=timeouts;
@@ -955,8 +1255,10 @@ function endGame(winner){
 }
 
 function closeModal(){document.getElementById('modal').classList.remove('show');}
-function restartGame(){closeModal();gotoMenu();}
+function restartGame(){fogPending=null;closeModal();gotoMenu();}
 
+// ---- INIT ----
+buildMiniGridPreviews();
 showScreen('menuScreen');
 </script>
 </body>
